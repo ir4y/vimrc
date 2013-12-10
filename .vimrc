@@ -1,8 +1,8 @@
 " Initialize settings
-    set nocompatible
-    filetype off 
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
+set nocompatible
+filetype off 
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
 
 " vundle package
@@ -45,14 +45,6 @@ Bundle 'vim-scripts/closetag.vim'
 
 " vim-surround package
 Bundle 'tpope/vim-surround'
-
-
-" python-mode package
-Bundle 'klen/python-mode'
-    let g:pymode_options = 0
-    let g:pymode_lint_write = 0 
-    let g:pymode_rope_vim_completion = 0 
-    let g:pymode_folding = 0
 
 
 " vim-coffee-script package
@@ -104,14 +96,27 @@ Bundle 'miripiruni/vim-better-css-indent'
 " CSScomb-for-Vim package
 Bundle 'miripiruni/CSScomb-for-Vim'
 
+" Clojure
+Bundle 'guns/vim-clojure-static'
+Bundle 'tpope/vim-fireplace'
+Bundle 'kien/rainbow_parentheses.vim'
+function! Config_Rainbow()
+    RainbowParenthesesLoadRound
+    RainbowParenthesesLoadSquare
+    RainbowParenthesesLoadBraces
+endfunction
 
-" VimClojure package
-Bundle 'vim-scripts/VimClojure'
-    let g:vimclojure#HighlightBuiltins = 1
-    let g:vimclojure#ParenRainbow = 1
-    let vimclojure#NailgunClient = "~/bin/ng"
-    let vimclojure#WantNailgun = 1
+function! Load_Rainbow()
+    call rainbow_parentheses#activate()
+endfunction
 
+augroup TastetheRainbow
+    autocmd!
+    autocmd VimEnter,BufRead,BufWinEnter,BufNewFile * call Config_Rainbow()
+    autocmd VimEnter,BufRead,BufWinEnter,BufNewFile * call Load_Rainbow()
+augroup END
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
 
 " jedi-vim package
 Bundle 'davidhalter/jedi-vim'
