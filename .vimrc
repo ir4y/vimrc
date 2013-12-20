@@ -9,6 +9,11 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 
+" Tag manager
+Bundle 'majutsushi/tagbar'
+nmap <F8> :TagbarToggle<CR>
+
+
 " Syntastic package
 Bundle 'Syntastic'
 
@@ -127,10 +132,15 @@ Bundle 'davidhalter/jedi-vim'
 
 " python-mode package
 Bundle 'klen/python-mode'
-    let g:pymode_options = 0
-    let g:pymode_lint_write = 0 
-    let g:pymode_rope_vim_completion = 0 
+    let g:pymode_options = 1
+    let g:pymode_rope_vim_completion = 0
     let g:pymode_folding = 0
+    let g:pymode_lint_on_fly = 1
+    let g:pymode_rope = 0
+
+
+" Django manage.py helpers
+Bundle 'jmcomets/vim-pony'
 
 
 " Conque
