@@ -118,19 +118,28 @@ augroup END
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
 
-" jedi-vim package
+
+" jedi-vim package (python highlight)
 Bundle 'davidhalter/jedi-vim'
+
+
+" python-mode package
+Bundle 'klen/python-mode'
+    let g:pymode_options = 0
+    let g:pymode_lint_write = 0 
+    let g:pymode_rope_vim_completion = 0 
+    let g:pymode_folding = 0
+    let  b:pymode_modified = 0
+
 
 " Conque
 Bundle 'basepi/vim-conque'
+
 
 " Color scheme
 Bundle 'cschlueter/vim-mustang'
 colorscheme mustang
 
-" Python Syntax Checker
-Bundle 'nvie/vim-flake8'
-autocmd BufWritePost *.py call Flake8() "Запускаем проверку после каждого сохранения
 
 "VimErlang package
 Bundle 'jimenezrick/vimerl'
