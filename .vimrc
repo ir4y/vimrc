@@ -112,8 +112,10 @@ endfunction
 
 augroup TastetheRainbow
     autocmd!
-    autocmd VimEnter,BufRead,BufWinEnter,BufNewFile * call Config_Rainbow()
-    autocmd VimEnter,BufRead,BufWinEnter,BufNewFile * call Load_Rainbow()
+    autocmd VimEnter,BufRead,BufWinEnter,BufNewFile *.clj call Config_Rainbow()
+    autocmd VimEnter,BufRead,BufWinEnter,BufNewFile *.cljs call Config_Rainbow()
+    autocmd VimEnter,BufRead,BufWinEnter,BufNewFile *.clj call Load_Rainbow()
+    autocmd VimEnter,BufRead,BufWinEnter,BufNewFile *.cljs call Load_Rainbow()
 augroup END
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
