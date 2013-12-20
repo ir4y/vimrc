@@ -131,7 +131,6 @@ Bundle 'klen/python-mode'
     let g:pymode_lint_write = 0 
     let g:pymode_rope_vim_completion = 0 
     let g:pymode_folding = 0
-    let  b:pymode_modified = 0
 
 
 " Conque
