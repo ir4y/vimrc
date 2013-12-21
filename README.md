@@ -136,6 +136,8 @@ import ipdb; ipdb.set_trace()
 ##PEP8
 - <F5> проверить файл на соответствие pep8
 
+##Clojure
+Fireplace docs http://clojure-doc.org/articles/tutorials/vim_fireplace.html
 
 ##DEPENDENCIES
 Для того что бы пользоваться всеми удобставми при разработке на python необходимо:  
@@ -149,4 +151,3 @@ pip install pyflakes
 pip install pylint    
 pip install pep8    
 ```    
-
