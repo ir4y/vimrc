@@ -1,9 +1,10 @@
 " Initialize settings
-set nocompatible
-filetype off 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " vundle package
 Bundle 'gmarik/vundle'
@@ -126,17 +127,13 @@ let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
 
 
-" jedi-vim package (python highlight)
-Bundle 'davidhalter/jedi-vim'
-
-
 " python-mode package
 Bundle 'klen/python-mode'
     let g:pymode_options = 1
-    let g:pymode_rope_vim_completion = 0
+    let g:pymode_rope_vim_completion = 1
     let g:pymode_folding = 0
     let g:pymode_lint_on_fly = 1
-    let g:pymode_rope = 0
+    let g:pymode_rope = 1
 
 
 " Django manage.py helpers
@@ -148,9 +145,8 @@ Bundle 'basepi/vim-conque'
 
 
 " Color scheme
-Bundle 'cschlueter/vim-mustang'
-colorscheme mustang
-
+Bundle 'nanotech/jellybeans.vim'
+colorscheme jellybeans
 
 "VimErlang package
 Bundle 'jimenezrick/vimerl'
@@ -169,7 +165,6 @@ Bundle 'Blackrush/vim-gocode'
 set runtimepath+=/usr/local/go/misc/vim
 
 " Default settings
-    filetype plugin indent on
     syntax on
     set background=dark
     set nu
@@ -245,3 +240,7 @@ set runtimepath+=/usr/local/go/misc/vim
     set guioptions-=m  "remove menu bar
     set guioptions-=T  "remove toolbar
     set guioptions-=r 
+
+
+call vundle#end()            " required
+filetype plugin indent on
