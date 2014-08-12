@@ -132,8 +132,9 @@ Bundle 'klen/python-mode'
     let g:pymode_options = 1
     let g:pymode_rope_vim_completion = 1
     let g:pymode_folding = 0
-    let g:pymode_lint_on_fly = 1
+    let g:pymode_lint_on_fly = 0
     let g:pymode_rope = 1
+    let g:pymode_doc = 0
 
 
 " Django manage.py helpers
