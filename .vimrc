@@ -1,247 +1,243 @@
-" Initialize settings
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible
+filetype off
 
-" set the runtime path to include Vundle and initialize
+let $PATH = $PATH . ':' . expand("~/.local/bin")
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" vundle package
-Bundle 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'ctrlpvim/ctrlp.vim'
+" Plugin 'altercation/vim-colors-solarized'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'bling/vim-airline'
+Plugin 'othree/html5.vim'
+Plugin 'facebook/vim-flow'
+
+Plugin 'elzr/vim-json'
+ Plugin 'vim-scripts/JavaScript-Indent'
+Plugin 'mxw/vim-jsx'
+Plugin 'pangloss/vim-javascript'
+Plugin 'moll/vim-node'
+Plugin 'mattn/emmet-vim'
+Plugin 'reedes/vim-lexical'
 
 
-" Tag manager
-Bundle 'majutsushi/tagbar'
-nmap <F8> :TagbarToggle<CR>
+Plugin 'Valloric/MatchTagAlways'
+
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'JamshedVesuna/vim-markdown-preview'
 
 
-" Syntastic package
-Bundle 'Syntastic'
+Plugin 'stephpy/vim-yaml'
 
+Plugin 'ekalinin/Dockerfile.vim'
 
-" SyntaxComplete package
-Bundle 'vim-scripts/SyntaxComplete'
-
-
-" nerdtree package
-Bundle 'scrooloose/nerdtree'
-    map <C-y> :NERDTreeToggle<CR>
-    let NERDTreeIgnore = ['\.pyc$']
-
-
-" nerdcommenter package
-Bundle 'scrooloose/nerdcommenter'
-
-
-" StatusLineHighlight package
-Bundle 'vim-scripts/StatusLineHighlight'
-    set statusline=%<%f%h%m%r\ %b\ %{&encoding}\ 0x\ \ %l,%c%V\ %P
-    set laststatus=2
-    set smartindent
-
-
-" bufexplorer package
-Bundle 'corntrace/bufexplorer'
-
-
-" closetag.vim package
-Bundle 'vim-scripts/closetag.vim'
-    let g:closetag_html_style=1
-
-
-" vim-surround package
-Bundle 'tpope/vim-surround'
-
-
-" vim-coffee-script package
-Bundle 'kchmck/vim-coffee-script'
-    let coffee_compile_vert = 1
-    setl scrollbind
-    nnoremap <F9> :CoffeeCompile watch vert<CR>
-    au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
-    let coffee_lint_options = '-f ~/.coffee/lintconfig'
-
-" vim-literate-coffeescript package
-Bundle 'mintplant/vim-literate-coffeescript'
-
-" vim-javascript package
-Bundle 'pangloss/vim-javascript'
-    let g:html_indent_inctags = "html,body,head,tbody"
-    let g:html_indent_script1 = "inc"
-    let g:html_indent_style1 = "inc"
-
-
-" javascript-libraries-syntax.vim package
-Bundle 'othree/javascript-libraries-syntax.vim'
-
-
-" html5.vim package
-Bundle 'othree/html5.vim'
-
-
-" vim-html5validator package
-Bundle 'hokaccha/vim-html5validator'
-
-
-" MatchTag package
-Bundle 'gregsexton/MatchTag'
-
-
-" vim-css3-syntax package
-Bundle 'hail2u/vim-css3-syntax'
-
-
-" vim-css-color package
-Bundle 'skammer/vim-css-color'
-
-
-" vim-better-css-indent package
-Bundle 'miripiruni/vim-better-css-indent'
-
-
-" CSScomb-for-Vim package
-Bundle 'miripiruni/CSScomb-for-Vim'
-
-" Clojure
-Bundle 'guns/vim-clojure-static'
-Bundle 'tpope/vim-fireplace'
-Bundle 'kien/rainbow_parentheses.vim'
-function! Config_Rainbow()
-    RainbowParenthesesLoadRound
-    RainbowParenthesesLoadSquare
-    RainbowParenthesesLoadBraces
-endfunction
-
-function! Load_Rainbow()
-    call rainbow_parentheses#activate()
-endfunction
-
-augroup TastetheRainbow
-    autocmd!
-    autocmd VimEnter,BufRead,BufWinEnter,BufNewFile *.clj call Config_Rainbow()
-    autocmd VimEnter,BufRead,BufWinEnter,BufNewFile *.cljs call Config_Rainbow()
-    autocmd VimEnter,BufRead,BufWinEnter,BufNewFile *.clj call Load_Rainbow()
-    autocmd VimEnter,BufRead,BufWinEnter,BufNewFile *.cljs call Load_Rainbow()
-augroup END
-let g:rbpt_max = 16
-let g:rbpt_loadcmd_toggle = 0
-
-
-" python-mode package
-Bundle 'klen/python-mode'
-    let g:pymode_options = 1
+Plugin 'klen/python-mode'
+let g:pymode_options = 1
     let g:pymode_rope_vim_completion = 1
-    let g:pymode_folding = 0
-    let g:pymode_lint_on_fly = 0
-    let g:pymode_rope = 1
-    let g:pymode_doc = 0
+        let g:pymode_folding = 0
+            let g:pymode_lint_on_fly = 0
+                let g:pymode_rope = 1
+                    let g:pymode_doc = 0
+
+call vundle#end()
+filetype plugin indent on
+
+augroup lexical
+  autocmd!
+  autocmd FileType markdown,mkd call lexical#init()
+  autocmd FileType textile call lexical#init()
+  autocmd FileType text call lexical#init({ 'spell': 0 })
+augroup END
+
+let mapleader=","
+
+" Sets how many lines of history VIM has to remember
+set history=500
+
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+
+" enhanced command completion
+set wildmenu
+
+set visualbell
 
 
-" Django manage.py helpers
-Bundle 'jmcomets/vim-pony'
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
 
+set cursorline
+set hidden
+set nofoldenable
+"set modelines=0
+" set clipboard=unnamed
+"set synmaxcol=128
+"set ttyscroll=10
+"set encoding=utf-8
+set nowrap
+set number
+set hlsearch
+set ignorecase
+set smartcase
 
-" Conque
-Bundle 'basepi/vim-conque'
+" Turn backup off, since most stuff is in SVN, git et.c anyway...
+set nobackup
+set nowb
+set noswapfile
 
+set autoindent
+" set softtabstop=4
+set expandtab
+" set noexpandtab
+set softtabstop=2
+set shiftwidth=2
+" set smarttab
 
-" Color scheme
-Bundle 'nanotech/jellybeans.vim'
+" set background=dark
+set t_Co=256
 colorscheme jellybeans
 
-"VimErlang package
-Bundle 'jimenezrick/vimerl'
-autocmd Filetype erlang setlocal omnifunc=erlang_complete#Complete
+" ================ Persistent Undo ==================
+" Keep undo history across sessions, by storing in file.
+" Only works all the time.
+if has('persistent_undo')
+  silent !mkdir ~/.vim/backups > /dev/null 2>&1
+  set undodir=~/.vim/backups
+  set undofile
+endif
 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-"multiple cursors
-Bundle 'terryma/vim-multiple-cursors'
-let g:multi_cursor_next_key='<C-n>'
-let g:multi_cursor_prev_key='<C-p>'
-let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<Esc>'
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
 
-"Go Lang
-Bundle 'Blackrush/vim-gocode'
-set runtimepath+=/usr/local/go/misc/vim
+let g:syntastic_check_on_wq = 0
 
-" Default settings
-    syntax on
-    set background=dark
-    set nu
-    set showtabline=1 
-    
-    set scrolljump=7 
-    set scrolloff=7 
-    
-    set encoding=utf8
-    set termencoding=utf-8
-    set fileencodings=utf8,cp1251
-    set wrap " Включаем перенос строк
-    set linebreak " Перенос не разрывая слов
-    set autoindent " Копирует отступ от предыдущей строки
-    set smartindent " Включаем 'умную' автоматическую расстановку отступов
+let g:jsx_ext_required = 0
 
-    " Символ табуляции и конца строки
-    if has('multi_byte')
-        set listchars=tab:▸\ ,trail:·,extends:→,precedes:←,nbsp:×
-    endif
+" let g:slime_target = "tmux"
 
-    " Символ, который будет показан перед перенесенной строкой
-    if has("linebreak")
-        let &sbr = nr2char(8618).' '" Show ↪ at the beginning of wrapped lines
-    endif
+let g:vim_json_syntax_conceal = 0
 
-    set splitbelow  " новый сплит будет ниже текущего :sp
-    set splitright  " новый сплит будет правее текущего :vsp
+let g:lexical#spelllang = ['en_us', 'ru_ru']
 
-    set expandtab 
-    set shiftwidth=4 
-    set softtabstop=4 
-    set tabstop=4 
+" let g:acp_enableAtStartup = 0
+" let g:neocomplete#enable_at_startup = 1
+" let g:neocomplete#enable_smart_case = 1
 
-    " let mapleader = "," " мапим <Leader> на запятую.     
-    " Вставлять код извне без этой строчки проблематично, без нее начитается
-    " бешеный реформат кода
-    set pastetoggle=<Leader>p
-    
-    imap >Ins> <Esc>i 
-    
-    inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
-                \ "\<lt>C-n>" :
-                \ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
-                \ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
-                \ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
-    imap <C-@> <C-Space>
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
+" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
-    " Highlight text after 79 charset
-    highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-    match OverLength /\%79v.\+/
+" if !exists('g:neocomplete#keyword_patterns')
+" 	let g:neocomplete#keyword_patterns = {}
+" endif
+" let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
-    " Проверка орфографии
-    set spell spelllang= 
-    set nospell " По умолчанию проверка орфографии выключена
-    menu Spell.off :setlocal spell spelllang= <cr>
-    menu Spell.Russian+English :setlocal spell spelllang=ru,en <cr>
-    menu Spell.Russian :setlocal spell spelllang=ru <cr>
-    menu Spell.English :setlocal spell spelllang=en <cr>
-    menu Spell.-SpellControl- :
-    menu Spell.Word\ Suggest<Tab>z= z=
-    menu Spell.Previous\ Wrong\ Word<Tab>[s [s
-    menu Spell.Next\ Wrong\ Word<Tab>]s ]s
-    
-    " Save on losing focus
-    autocmd FocusLost * :wa 
-    
-    " Indent multiple lines with tab
-    vmap <Tab> > gv
-    vmap <S-Tab> < gv
-    
-    "Remove GUI menus
-    set guioptions-=m  "remove menu bar
-    set guioptions-=T  "remove toolbar
-    set guioptions-=r 
+let g:easytags_async = 1
 
+" Automatically removing all trailing whitespace
+autocmd BufWritePre * :%s/\s\+$//e
 
-call vundle#end()            " required
-filetype plugin indent on
+" Enable omni completion.
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" autocmd FileType ruby setlocal omnifunc=rubycomplete#CompleteTags
+" autocmd BufWritePost *.hs call s:check_and_lint()
+" autocmd BufWritePost *.hs GhcModCheckAndLintAsync
+
+let g:buffergator_viewport_split_policy = "B"
+let g:buffergator_sort_regime = "mru"
+
+let g:vim_markdown_folding_disabled = 1
+
+let g:syntastic_haskell_checkers = ['']
+
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_haml_checkers = ['haml_lint']
+let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+let g:syntastic_erlang_checkers = ['syntaxerl', 'escript']
+
+let g:syntastic_php_checkers=['phpcs', 'php']
+let g:syntastic_php_phpcs_exec='~/.composer/vendor/bin/phpcs'
+let g:syntastic_php_phpcs_args='--standard=PSR2 -n'
+
+" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+nmap <F8> :TagbarToggle<CR>
+nnoremap <F5> :UndotreeToggle<cr>
+
+" Map ctrl-movement keys to window switching
+map <C-k> <C-w><Up>
+map <C-j> <C-w><Down>
+map <C-l> <C-w><Right>
+map <C-h> <C-w><Left>
+
+" Toggle paste mode
+nmap <silent> <F4> :set invpaste<CR>:set paste?<CR>
+imap <silent> <F4> <ESC>:set invpaste<CR>:set paste?<CR>
+
+" format the entire file
+nnoremap <leader>fef :normal! gg=G``<CR>
+
+" set text wrapping toggles
+nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
+
+" find merge conflict markers
+nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
+
+" upper/lower word
+nmap <leader>u mQviwU`Q
+nmap <leader>l mQviwu`Q
+
+nmap <C-\> :NERDTreeFind<CR>
+nmap <silent> <leader><leader> :NERDTreeToggle<CR>
+
+let NERDTreeIgnore = ['\.pyc$']
+
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+nmap <silent> // :nohlsearch<CR>
+noremap ,hl :set hlsearch! hlsearch?<CR>
+
+" Allows you to enter sudo pass and save the file
+" " when you forgot to open your file with sudo
+cmap w!! %!sudo tee > /dev/null %
+
+" Allow to copy/paste between VIM instances
+" "copy the current visual selection to ~/.vbuf
+vmap <Leader>y :w! ~/.vbuf<CR>
+" "copy the current line to the buffer file if no visual selection
+nmap <Leader>y :.w! ~/.vbuf<CR>
+" "paste the contents of the buffer file
+nmap <Leader>p :r ~/.vbuf<CR>
+
+au BufRead,BufNewFile {Vagrantfile,Gemfile,Capfile} set ft=ruby
+
+au FileType javascript setl sw=4 sts=4 et
+
+if filereadable(expand("~/.vimrc.after"))
+  source ~/.vimrc.after
+endif
+
+" Indent multiple lines with tab
+vmap <Tab> > gv
+vmap <S-Tab> < gv
